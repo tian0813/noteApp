@@ -6,6 +6,7 @@ class NoteForm extends HTMLElement {
 
   connectedCallback() {
     this.render();
+    this.setupEventListeners();
   }
 
   render() {
@@ -16,7 +17,7 @@ class NoteForm extends HTMLElement {
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Add New Note</h5>
-              <button class="close" id="closeButton" onclick="closeModal()">&times;</button>
+              <button type="button" class="close" id="closeButton" ">&times;</button>
             </div>
             <div class="modal-body">
               <form action="" method="POST" id="noteForm">
@@ -30,12 +31,8 @@ class NoteForm extends HTMLElement {
                   <textarea id="body" name="body" rows="3"></textarea>
                   <small class="error-message" id="bodyError"></small>
                 </div>
-                <div class="form-checkbox">
-                  <label for="archived">Archived ?</label>
-                  <input type="checkbox" id="archived" name="archived" />
-                </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" id="closeModalButton" onclick="closeModal()">
+                  <button type="button" class="btn btn-secondary" id="closeModalButton"">
                     Close
                   </button>
                   <button type="submit" class="btn btn-primary" id="submitButton" disabled>
@@ -48,6 +45,23 @@ class NoteForm extends HTMLElement {
         </div>
       `;
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
+
+  setupEventListeners() {
+    const closeModal = this.shadowRoot.querySelector("#closeModalButton");
+    const close = this.shadowRoot.querySelector("#closeButton");
+
+    if (closeModal) {
+      closeModal.addEventListener("click", () => {
+        this.dispatchEvent(new CustomEvent("close-modal"));
+      });
+    }
+
+    if (close) {
+      close.addEventListener("click", () => {
+        this.dispatchEvent(new CustomEvent("close-modal"));
+      });
+    }
   }
 }
 

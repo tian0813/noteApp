@@ -17,7 +17,6 @@ body {
 .container {
   width: 100%;
   max-width: 1200px;
-
 }
 
 .header-container {
@@ -28,7 +27,6 @@ body {
   margin-bottom: 20px;
   position: relative;
   margin-top: 20px;
-
 }
 
 .header {
@@ -82,7 +80,6 @@ body {
   width: 100%;
   max-width: 1200px;
   margin: auto;
-
 }
 
 .note-section {
@@ -99,7 +96,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
 }
 
 .note:hover {
@@ -178,7 +174,6 @@ input:invalid,
 textarea:invalid {
   border-color: red;
 }
-
 
 .note-combine {
   display: flex;
@@ -328,8 +323,6 @@ textarea:invalid {
   .toggle-form-button {
     margin-top: 10px;
   }
-
-
 }
 
 /* Mobile */
@@ -355,6 +348,4 @@ textarea:invalid {
   .toggle-form-button {
     margin-top: 10px;
   }
-
-
 }
