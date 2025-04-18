@@ -258,9 +258,14 @@ async function renderNotes(note) {
   console.log(note);
 
   if (note) {
-    archivedContainer.innerHTML = "";
     const el = createNoteElement(note);
-    notesContainer.appendChild(el);
+    if (note.archived) {
+      notesContainer.innerHTML = "";
+      notesContainer.appendChild(el);
+    } else {
+      archivedContainer.innerHTML = "";
+      archivedContainer.appendChild(el);
+    }
   } else {
     if (res.length === 0) {
       notesContainer.innerHTML = "<p>Tidak ada catatan</p>";
