@@ -7,6 +7,7 @@ import "./components/note-form.js";
 
 const getNotes = async () => {
   try {
+    showLoading("Memuat semua catatan...");
     const response = await fetch(`https://notes-api.dicoding.dev/v2/notes`, {
       method: "GET",
       headers: {
@@ -19,11 +20,14 @@ const getNotes = async () => {
     return responseJson.data;
   } catch (error) {
     console.log(error);
+  } finally {
+    hideLoading();
   }
 };
 
 const getNote = async (id) => {
   try {
+    showLoading("Memuat 1 catatan...");
     const response = await fetch(
       `https://notes-api.dicoding.dev/v2/notes/${id}`,
       {
@@ -39,6 +43,8 @@ const getNote = async (id) => {
     return responseJson.data;
   } catch (error) {
     console.log(error);
+  } finally {
+    hideLoading();
   }
 };
 
@@ -62,6 +68,7 @@ const setNote = async (note) => {
 
 const getArchivedNotes = async () => {
   try {
+    showLoading("Memuat semua catatan yang diarsip...");
     const response = await fetch(
       `https://notes-api.dicoding.dev/v2/notes/archived`,
       {
@@ -77,11 +84,14 @@ const getArchivedNotes = async () => {
     return responseJson.data;
   } catch (error) {
     console.log(error);
+  } finally {
+    hideLoading();
   }
 };
 
 const archiveNote = async (id) => {
   try {
+    showLoading("Memuat 1 catatan yang diarsip...");
     const response = await fetch(
       `https://notes-api.dicoding.dev/v2/notes/${id}/archive`,
       {
@@ -139,6 +149,24 @@ const removeNote = async (id) => {
     console.log(error);
   }
 };
+
+function showLoading(text = "Memuat...") {
+  const loading = document.getElementById("loading");
+  const loadingText = loading.querySelector(".loading-text");
+  const app = document.getElementById("container");
+
+  if (loadingText) loadingText.textContent = text;
+  if (loading) loading.style.display = "flex";
+  if (app) app.style.display = "none";
+}
+
+function hideLoading() {
+  const loading = document.getElementById("loading");
+  const app = document.getElementById("container");
+
+  if (loading) loading.style.display = "none";
+  if (app) app.style.display = "block";
+}
 
 function formatDateSimple(isoString) {
   const date = new Date(isoString);

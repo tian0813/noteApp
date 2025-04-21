@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start-dev": "npx webpack serve",
-    "bundle": "webpack --mode development"
+    "bundle": "webpack --mode development",
+    "build": "webpack --config ./webpack.config.js --mode production --stats verbose"
   },
   "keywords": [],
   "author": "",
