@@ -50,6 +50,7 @@ const getNote = async (id) => {
 
 const setNote = async (note) => {
   try {
+    showLoading("Menambahkan catatan...");
     const response = await fetch(`https://notes-api.dicoding.dev/v2/notes`, {
       method: "POST",
       headers: {
@@ -63,6 +64,8 @@ const setNote = async (note) => {
     return responseJson.data;
   } catch (error) {
     console.log(error);
+  } finally {
+    hideLoading();
   }
 };
 
@@ -107,11 +110,14 @@ const archiveNote = async (id) => {
     return responseJson.data;
   } catch (error) {
     console.log(error);
+  } finally {
+    hideLoading();
   }
 };
 
 const unarchiveNote = async (id) => {
   try {
+    showLoading("Unarchive catatan...");
     const response = await fetch(
       `https://notes-api.dicoding.dev/v2/notes/${id}/unarchive`,
       {
@@ -127,11 +133,14 @@ const unarchiveNote = async (id) => {
     return responseJson.data;
   } catch (error) {
     console.log(error);
+  } finally {
+    hideLoading();
   }
 };
 
 const removeNote = async (id) => {
   try {
+    showLoading("Menghapus catatan...");
     const response = await fetch(
       `https://notes-api.dicoding.dev/v2/notes/${id}`,
       {
@@ -147,6 +156,8 @@ const removeNote = async (id) => {
     return responseJson.data;
   } catch (error) {
     console.log(error);
+  } finally {
+    hideLoading();
   }
 };
 

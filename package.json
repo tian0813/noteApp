@@ -4,7 +4,7 @@
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start-dev": "npx webpack serve",
+    "start-dev": "npx webpack serve --mode development",
     "bundle": "webpack --mode development",
     "build": "webpack --config ./webpack.config.js --mode production --stats verbose"
   },
